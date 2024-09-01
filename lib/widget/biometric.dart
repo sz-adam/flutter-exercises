@@ -1,3 +1,4 @@
+import 'package:biometric/page/home.dart';
 import 'package:flutter/material.dart';
 
 import 'package:local_auth/local_auth.dart';
@@ -52,11 +53,15 @@ class _BiometricState extends State<Biometric> {
         options:
             const AuthenticationOptions(stickyAuth: true, biometricOnly: true),
       );
+      if (isAuthenticate) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => Home()));
+      }
       print("Authentication Status is : $isAuthenticate");
-    }  catch (e) {
+    } catch (e) {
       print(e);
     }
-    if(!mounted){
+    if (!mounted) {
       return;
     }
   }
