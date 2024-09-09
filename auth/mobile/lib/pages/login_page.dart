@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:mobile_app/pages/home.dart';
 import 'package:mobile_app/pages/register_page.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -10,11 +14,33 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _passwordController = TextEditingController();
+  final baseUrl = dotenv.env['URL'] ?? '';
+  final loginEndPoint = dotenv.env['LOGIN'] ?? '';
 
-  void _login() {
+  Future<void> _login() async {
     if (_formKey.currentState?.validate() ?? false) {
-      print('Email: ${_nameController.text}');
-      print('Password: ${_passwordController.text}');
+      final url = Uri.parse('$baseUrl$loginEndPoint');
+      final response = await http.post(url,
+          headers: {'Content-Type': 'application/json'},
+          body: json.encode({
+            'username': _nameController.text,
+            'password': _passwordController.text
+          }));
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        // Sikeres Bejelentkezés
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Login successful!')),
+        );
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (context) => Home(username: _nameController.text)),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Error: ${response.body}')),
+        );
+      }
     }
   }
 
