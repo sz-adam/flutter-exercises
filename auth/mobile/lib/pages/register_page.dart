@@ -1,3 +1,7 @@
+import 'dart:convert';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:http/http.dart' as http;
+
 import 'package:flutter/material.dart';
 import 'package:mobile_app/pages/login_page.dart';
 
@@ -8,15 +12,37 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
-  final _emailController = TextEditingController();
+  final _userNameController = TextEditingController();
   final _passwordController = TextEditingController();
+  final baseUrl = dotenv.env['URL'] ?? '';
+  final registerEndpoint = dotenv.env['REGISTER'] ?? '';
 
-  void _register() {
+  Future<void> _register() async {
     if (_formKey.currentState?.validate() ?? false) {
-      // Form validálása sikeres
-      print('Email: ${_emailController.text}');
-      print('Password: ${_passwordController.text}');
-      // Itt folytathatod a regisztrációs logikát
+      final url = Uri.parse('$baseUrl$registerEndpoint');
+      final response = await http.post(
+        url,
+        headers: {'Content-Type': 'application/json'},
+        body: json.encode({
+          'username': _userNameController.text,
+          'password': _passwordController.text,
+        }),
+      );
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        // Sikeres regisztráció
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Registration successful!')),
+        );
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => LoginPage()),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Error: ${response.body}')),
+        );
+      }
     }
   }
 
@@ -40,7 +66,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 color: Colors.lightBlue,
               ),
               TextFormField(
-                controller: _emailController,
+                controller: _userNameController,
                 decoration: const InputDecoration(labelText: 'Name'),
                 keyboardType: TextInputType.name,
                 validator: (value) {
