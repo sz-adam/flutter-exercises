@@ -94,8 +94,7 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
-                    'Please register',
-                    style: TextStyle(color: Colors.black54),
+                    'Please register',                   
                   ),
                   TextButton(
                       onPressed: () {
