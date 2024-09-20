@@ -2,6 +2,8 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const { createUser, findUserByUsername } = require('../models/userModel');
 const router = express.Router();
+const jwt = require('jsonwebtoken');
+
 
 // Regisztráció
 router.post('/register', async (req, res) => {
@@ -25,19 +27,20 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
-  // Felhasználó megkeresése
   const user = findUserByUsername(username);
   if (!user) {
     return res.status(400).json({ message: 'Invalid Username' });
   }
 
-  // Jelszó ellenőrzése
   const isPasswordValid = await bcrypt.compare(password, user.password);
   if (!isPasswordValid) {
     return res.status(400).json({ message: 'Invalid Password' });
   }
 
-  res.status(200).json({ message: 'Login successful' });
+  // JWT token létrehozása lejárati idő 1 óra
+  const token = jwt.sign({ userId: user.id, username: user.username }, 'your_secret_key', { expiresIn: '1h' });
+
+  res.status(200).json({ message: 'Login successful', token });
 });
 
 module.exports = router;
