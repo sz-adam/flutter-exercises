@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mobile_app/components/pick_image.dart';
 import 'package:mobile_app/provider/theme_provider.dart';
 
 class Home extends ConsumerWidget {
@@ -35,11 +36,16 @@ class Home extends ConsumerWidget {
           ),
         ],
       ),
-      body: Center(
-        child: Text(
-          'Hello, $username!',
-          style: const TextStyle(fontSize: 24),
-        ),
+      body: Column(
+        children: [
+          Center(
+            child: Text(
+              'Hello, $username!',
+              style: const TextStyle(fontSize: 24),
+            ),
+          ),
+          PickImage()
+        ],
       ),
     );
   }
