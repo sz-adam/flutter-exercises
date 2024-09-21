@@ -1,3 +1,4 @@
+import 'package:animation/page/grid_animation_page.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavigation extends StatefulWidget {
@@ -8,10 +9,9 @@ class BottomNavigation extends StatefulWidget {
 class _BottomNavigationState extends State<BottomNavigation> {
   int _selectedIndex = 0;
 
-  // Oldalak, ikonok, háttérszínek és ikon színek tömbben
   final List<Map<String, dynamic>> _pages = [
     {
-      'page': Text('GridAnimationPage', style: TextStyle(fontSize: 24)),
+      'page': const GridAnimationPage(),
       'icon': Icons.home,
       'backgroundColor': Colors.blue,
       'iconColor': Colors.white,
