@@ -1,3 +1,4 @@
+import 'package:animation/page/carousel_page.dart';
 import 'package:animation/page/grid_animation_page.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +19,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
       'label': 'Grid',
     },
     {
-      'page': Text('CarouselPage', style: TextStyle(fontSize: 24)),
+      'page': AnimalCarousel(),
       'icon': Icons.search,
       'backgroundColor': Colors.green,
       'iconColor': Colors.white,
