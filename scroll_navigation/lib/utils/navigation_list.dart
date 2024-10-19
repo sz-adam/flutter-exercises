@@ -7,16 +7,19 @@ final List<Map<String, dynamic>> navItems = [
   {
     'page': HomeScreen(),
     'icon': Icons.home,
+    'selectedIcon': Icons.home_work,
     'label': 'Home',
   },
   {
     'page': SearchScreen(),
     'icon': Icons.search,
+    'selectedIcon': Icons.search_off,
     'label': 'Search',
   },
   {
     'page': SettingsScreen(),
-    'icon': Icons.settings,
+    'icon': Icons.settings_applications_rounded,
+    'selectedIcon': Icons.settings,
     'label': 'Settings',
   },
 ];
