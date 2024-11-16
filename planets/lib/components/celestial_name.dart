@@ -1,30 +1,38 @@
 import 'package:flutter/material.dart';
+import '../model/planets_model.dart';
 
+import 'package:flutter/material.dart';
 import '../model/planets_model.dart';
 
 class CelestialName extends StatelessWidget {
-  const CelestialName({
-    super.key,
-    required this.celestialDataList,
-    required int currentIndex,
-  }) : _currentIndex = currentIndex;
-
   final List<CelestialBodyData> celestialDataList;
-  final int _currentIndex;
+  final int currentIndex;
+
+  const CelestialName({
+    Key? key,
+    required this.celestialDataList,
+    required this.currentIndex,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.black,
-      child: Column(
-        children: [
-          Center(
-            child: Text(
-              celestialDataList[_currentIndex].name,
-              style: const TextStyle(color: Colors.white, fontSize: 36),
+    return Positioned(
+      top: 50,
+      left: 0,
+      right: 0,
+      child: Center(
+        child: AnimatedSwitcher(
+          duration: Duration(seconds: 1),
+          child: Text(
+            celestialDataList[currentIndex].name,
+            key: ValueKey<int>(currentIndex),
+            style: const TextStyle(
+              fontSize: 36,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
             ),
-          )
-        ],
+          ),
+        ),
       ),
     );
   }

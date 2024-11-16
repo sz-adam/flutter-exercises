@@ -32,26 +32,30 @@ class _HomePagesState extends State<HomePages> {
 
     return SafeArea(
       child: Scaffold(
-        body: Stack(
-          children: [
-            //Bolygók neve
-            CelestialName(
+        body: Container(
+          color: Colors.black,
+          child: Stack(
+            children: [
+              //Bolygók neve
+              CelestialName(
                 celestialDataList: celestialDataList,
-                currentIndex: _currentIndex),
-            //bolygók megjelenítésére
-            CelestialPlanetView(
-              celestialDataList: celestialDataList,
-              currentIndex: _currentIndex,
-              pageController: _pageController,
-              onPageChanged: (index) {
-                setState(
-                  () {
-                    _currentIndex = index;
-                  },
-                );
-              },
-            )
-          ],
+                currentIndex: _currentIndex,
+              ),
+              //bolygók megjelenítésére
+              CelestialPlanetView(
+                celestialDataList: celestialDataList,
+                currentIndex: _currentIndex,
+                pageController: _pageController,
+                onPageChanged: (index) {
+                  setState(
+                    () {
+                      _currentIndex = index;
+                    },
+                  );
+                },
+              )
+            ],
+          ),
         ),
       ),
     );
