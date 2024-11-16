@@ -28,7 +28,16 @@ class CelestialPlanetView extends StatelessWidget {
           itemBuilder: (context, index) {
             final celestialData = celestialDataList[index];
             return GestureDetector(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CelestialDetailPages(
+                      data: celestialData,
+                    ),
+                  ),
+                );
+              },
               child: Image.asset(
                 celestialData.imageUrl,
                 width: 300,
