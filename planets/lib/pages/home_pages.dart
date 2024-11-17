@@ -49,13 +49,15 @@ class _HomePagesState extends State<HomePages> {
                 pageController: _pageController,
                 onPageChanged: (index) {
                   setState(
-                        () {
+                    () {
                       _currentIndex = index;
                     },
                   );
                 },
               ),
-              ScrollImage(celestialDataList: celestialDataList,
+              //Scroll
+              ScrollImage(
+                  celestialDataList: celestialDataList,
                   currentIndex: _currentIndex,
                   pageController: _pageController),
             ],
