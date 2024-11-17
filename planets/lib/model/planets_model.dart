@@ -30,7 +30,7 @@ List<CelestialBodyData> getCelestialBodyData() {
       gravity: "9.81 m/s²",
       temperature: "-89.2°C - +58.3°C",
       orbitalPeriod: "365.25 nap",
-      imageUrl: 'assets/images/earth.jpeg',
+      imageUrl: 'assets/images/earth.png',
     ),
     CelestialBodyData(
       name: "Moon",
@@ -39,7 +39,7 @@ List<CelestialBodyData> getCelestialBodyData() {
       gravity: "1.62 m/s²",
       temperature: "-173°C - +127°C",
       orbitalPeriod: "27.32 nap",
-      imageUrl: 'assets/images/moon.jpeg',
+      imageUrl: 'assets/images/moon.png',
     ),
 
     CelestialBodyData(
@@ -49,7 +49,7 @@ List<CelestialBodyData> getCelestialBodyData() {
       gravity: "3.71 m/s²",
       temperature: "-87°C - -5°C",
       orbitalPeriod: "687 nap",
-      imageUrl: 'assets/images/mars.jpeg',
+      imageUrl: 'assets/images/mars.png',
     ),
 
   ];
