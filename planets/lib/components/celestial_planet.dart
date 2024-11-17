@@ -51,11 +51,14 @@ class CelestialPlanetView extends StatelessWidget {
                           ),
                         );
                       },
-                      child: Image.asset(
-                        celestialData.imageUrl,
-                        width: 300,
-                        height: 250,
-                        fit: BoxFit.cover,
+                      child: Hero(
+                        tag: celestialData.name,
+                        child: Image.asset(
+                          celestialData.imageUrl,
+                          width: 300,
+                          height: 250,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),

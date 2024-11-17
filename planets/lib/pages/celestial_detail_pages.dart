@@ -8,9 +8,31 @@ class CelestialDetailPages extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Placeholder(
-      child: Center(
-        child: Text(data.name),
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(data.name),
+        ),
+        body: Stack(
+          children: [
+            Container(
+              color: Colors.black,
+            ),
+            Positioned(
+                right: screenWidth * 0.01,
+                top: -screenHeight * 0.1,
+                child: Hero(
+                    tag: data.name,
+                    child: Image.asset(
+                      data.imageUrl,
+                      width: 600,
+                      height: 500,
+                    )))
+          ],
+        ),
       ),
     );
   }
