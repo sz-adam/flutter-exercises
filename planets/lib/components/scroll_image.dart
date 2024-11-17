@@ -35,13 +35,27 @@ class _ScrollImageState extends State<ScrollImage> {
               child: Row(
                 children: [
                   for (int i = 0; i < widget.celestialDataList.length; i++) ...[
-                    Image.asset(
-                      widget.celestialDataList[i].imageUrl,
-                      width: 50,
-                      height: 50,
-                      fit: BoxFit.cover,
+                    GestureDetector(
+                      onTap: () {
+                        // aktuális index frissítése
+                        widget.pageController.animateToPage(
+                          i,
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.easeInOut,
+                        );
+                      },
+                      child: AnimatedScale(
+                        scale: widget.currentIndex == i ? 1.2 : 1.0,
+                        duration: const Duration(milliseconds: 300),
+                        child: Image.asset(
+                          widget.celestialDataList[i].imageUrl,
+                          width: 50,
+                          height: 50,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
                     ),
-                    // bolygók közötti vonal
+                    // Bolygók közötti vonal
                     if (i < widget.celestialDataList.length - 1)
                       Container(
                         width: 60,
