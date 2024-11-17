@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:planets/components/celestial_name.dart';
 import 'package:planets/components/celestial_planet.dart';
+import 'package:planets/components/scroll_image.dart';
 import 'package:planets/model/planets_model.dart';
 
 class HomePages extends StatefulWidget {
@@ -48,12 +49,15 @@ class _HomePagesState extends State<HomePages> {
                 pageController: _pageController,
                 onPageChanged: (index) {
                   setState(
-                    () {
+                        () {
                       _currentIndex = index;
                     },
                   );
                 },
-              )
+              ),
+              ScrollImage(celestialDataList: celestialDataList,
+                  currentIndex: _currentIndex,
+                  pageController: _pageController),
             ],
           ),
         ),
