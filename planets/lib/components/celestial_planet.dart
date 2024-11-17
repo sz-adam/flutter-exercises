@@ -27,23 +27,40 @@ class CelestialPlanetView extends StatelessWidget {
           onPageChanged: onPageChanged,
           itemBuilder: (context, index) {
             final celestialData = celestialDataList[index];
-            return GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => CelestialDetailPages(
-                      data: celestialData,
+            return AnimatedBuilder(
+              animation: pageController,
+              builder: (context, child) {
+                double value = 1.0;
+                if (pageController.position.haveDimensions) {
+                  value = pageController.page! - index;
+                  value = (1 - (value.abs() * 0.3)).clamp(0.7, 1.0);
+                }
+
+                return Transform.scale(
+                  scale: value,
+                  child: Opacity(
+                    opacity: value,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => CelestialDetailPages(
+                              data: celestialData,
+                            ),
+                          ),
+                        );
+                      },
+                      child: Image.asset(
+                        celestialData.imageUrl,
+                        width: 300,
+                        height: 250,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 );
               },
-              child: Image.asset(
-                celestialData.imageUrl,
-                width: 300,
-                height: 250,
-                fit: BoxFit.cover,
-              ),
             );
           },
         ),
