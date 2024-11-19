@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import '../model/planets_model.dart';
 
-import 'package:flutter/material.dart';
-import '../model/planets_model.dart';
-
 class CelestialName extends StatelessWidget {
   final List<CelestialBodyData> celestialDataList;
   final int currentIndex;
@@ -22,7 +19,7 @@ class CelestialName extends StatelessWidget {
       right: 0,
       child: Center(
         child: AnimatedSwitcher(
-          duration: Duration(seconds: 1),
+          duration: const Duration(seconds: 1),
           child: Text(
             celestialDataList[currentIndex].name,
             key: ValueKey<int>(currentIndex),

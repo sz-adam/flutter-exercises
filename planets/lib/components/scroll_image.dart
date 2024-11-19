@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../model/planets_model.dart';
 
 class ScrollImage extends StatefulWidget {
@@ -29,8 +28,7 @@ class _ScrollImageState extends State<ScrollImage> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Container(
-            child: SingleChildScrollView(
+          SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
@@ -67,7 +65,7 @@ class _ScrollImageState extends State<ScrollImage> {
                 ],
               ),
             ),
-          ),
+
         ],
       ),
     );

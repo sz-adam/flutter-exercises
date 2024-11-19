@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class DetailCard extends StatelessWidget {
-  final IconData icon;  // Changed from title to icon
+  final IconData icon;
   final String value;
 
   const DetailCard({Key? key, required this.icon, required this.value})
@@ -22,7 +22,7 @@ class DetailCard extends StatelessWidget {
               color: Colors.black.withOpacity(0.5),
               spreadRadius: 5,
               blurRadius: 15,
-              offset:const Offset(3, 3),
+              offset: const Offset(3, 3),
             ),
           ],
         ),
