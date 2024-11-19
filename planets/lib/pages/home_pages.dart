@@ -3,7 +3,6 @@ import 'package:planets/components/celestial_name.dart';
 import 'package:planets/components/celestial_planet.dart';
 import 'package:planets/components/scroll_image.dart';
 import 'package:planets/model/planets_model.dart';
-import 'package:planets/components/background_container.dart';
 
 class HomePages extends StatefulWidget {
   const HomePages({super.key});
@@ -34,7 +33,8 @@ class _HomePagesState extends State<HomePages> {
 
     return SafeArea(
       child: Scaffold(
-        body: BackgroundContainer(
+        body: Container(
+          color: Colors.black,
           child: Stack(
             children: [
               //Bolygók neve
@@ -57,10 +57,9 @@ class _HomePagesState extends State<HomePages> {
               ),
               //Scroll
               ScrollImage(
-                celestialDataList: celestialDataList,
-                currentIndex: _currentIndex,
-                pageController: _pageController,
-              ),
+                  celestialDataList: celestialDataList,
+                  currentIndex: _currentIndex,
+                  pageController: _pageController),
             ],
           ),
         ),
